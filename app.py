@@ -54,7 +54,9 @@ init_session()
 # ======================
 def select_role():
     st.write("### 話し相手を選んでください")
-    )col1, col2, col3 = st.columns(3)
+    )
+
+col1, col2, col3 = st.columns(3)
 
 with col1:
     if st.button("👶 孫と話す\n（やさしく元気）"):
