@@ -24,6 +24,15 @@ st.set_page_config(
     layout="centered"
 )
 
+st.title("ひとりじゃないよ")
+st.subheader("話したい相手を選んでください")
+
+st.info(
+    "このアプリは、誰かと話したい気持ちをやさしく支えるためのものです。\n"
+    "医療・診断・緊急対応は行いません。"
+)
+
+
 st.title("🧓 おしゃべり相手")
 st.write("ゆっくり、安心してお話しください。")
 
@@ -45,22 +54,20 @@ init_session()
 # ======================
 def select_role():
     st.write("### 話し相手を選んでください")
-    col1, col2, col3 = st.columns(3)
+    )col1, col2, col3 = st.columns(3)
 
-    with col1:
-        if st.button("👶 孫", use_container_width=True):
-            st.session_state.role = "孫"
+with col1:
+    if st.button("👶 孫と話す\n（やさしく元気）"):
+        st.session_state.role = "孫"
 
-    with col2:
-        if st.button("🤝 友人", use_container_width=True):
-            st.session_state.role = "友人"
+with col2:
+    if st.button("🧑‍🤝‍🧑 友人と話す\n（気軽に）"):
+        st.session_state.role = "友人"
 
-    with col3:
-        if st.button("🎓 先生", use_container_width=True):
-            st.session_state.role = "先生"
+with col3:
+    if st.button("👨‍🏫 先生と話す\n（落ち着いて）"):
+        st.session_state.role = "先生"
 
-    st.write("#### 今のお相手")
-    st.write(CHARACTERS[st.session_state.role]["description"])
 
 select_role()
 
@@ -92,7 +99,8 @@ def generate_reply(user_input):
 # ======================
 # 6. 入力と処理
 # ======================
-user_input = st.chat_input("今日はどんな一日でしたか？（短くても大丈夫です）")
+user_input = st.chat_input("ここに話したいことを書いてください（短くて大丈夫です）")
+
 
 if user_input:
     st.session_state.messages.append(("user", user_input))
@@ -106,3 +114,9 @@ if user_input:
 for role, msg in st.session_state.messages:
     with st.chat_message(role):
         st.write(msg)
+
+st.markdown("---")
+st.caption(
+    "※ このアプリは会話を楽しむための試作品です。\n"
+    "個人情報（住所・電話番号など）は入力しないでください。"
+)
